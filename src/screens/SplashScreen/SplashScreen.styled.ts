@@ -17,7 +17,7 @@ export const Wrapper = styled(Animated.View)<WrapperProps>`
   `};
 `;
 
-export const Image = styled.Image`
+export const Image = styled(Animated.Image)`
   width: 180px;
   height: 130px;
 `;
