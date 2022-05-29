@@ -1,6 +1,10 @@
 export const typography = {
   family: {
-    primary: 'Poppins',
+    primary: {
+      regular: 'Poppins-Regular',
+      medium: 'Poppins-Medium',
+      bold: 'Poppins-Bold',
+    },
   },
   size: {
     xs: '10px',
@@ -11,10 +15,5 @@ export const typography = {
     '2xl': '24px',
     '3xl': '28px',
     '4xl': '32px',
-  },
-  weight: {
-    regular: 400,
-    medium: 500,
-    bold: 700,
   },
 } as const;
