@@ -7,4 +7,6 @@ export type ModifiersType = {
   background?: string;
   backgroundColor?: string;
   bg?: string;
+  borderColor?: string;
+  bc?: string;
 };
