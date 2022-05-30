@@ -4,6 +4,7 @@ import {useEffect, useState} from 'react';
 
 export const useListCompanies = () => {
   const [companies, setCompanies] = useState<Company[]>([]);
+  const [error, setError] = useState('');
   const [allComapnies, setAllCompanies] = useState<Company[]>([]);
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -15,7 +16,9 @@ export const useListCompanies = () => {
         setCompanies(data);
         setAllCompanies(data);
         setRefreshing(false);
+        setError('');
       })
+      .catch(() => setError('Something went wrong 😟'))
       .finally(() => {
         setLoading(false);
       });
@@ -43,6 +46,7 @@ export const useListCompanies = () => {
     companies,
     allComapnies,
     loading,
+    error,
     refreshing,
     onRefresh,
     updateCompaniesInList,

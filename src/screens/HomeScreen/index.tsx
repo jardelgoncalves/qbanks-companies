@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {CardCompany} from '@/components/ui/CardCompany';
 
+import {CardCompany} from '@/components/ui/CardCompany';
 import {AddressType} from '@/interfaces/address';
 import {Input} from '@/components/ui/Input';
 import {Text} from '@/components/ui/Text';
@@ -8,6 +8,7 @@ import {searchCompanyByTextDebounced} from '@/services/search-service';
 import {useListCompanies} from '@/hooks/use-list-companies';
 
 import * as S from './Home.styled';
+import {Loader} from '@/components/ui/Loader';
 
 type Company = {
   id: string;
@@ -20,6 +21,8 @@ type Company = {
 export const HomeScreen = () => {
   const {
     companies,
+    loading,
+    error,
     onRefresh,
     refreshing,
     allComapnies,
@@ -64,6 +67,14 @@ export const HomeScreen = () => {
           value={query}
         />
       </S.HeaderContainer>
+      {loading && !refreshing && <Loader />}
+      {!!error && (
+        <S.ViewError>
+          <Text color="error.700" fs="lg">
+            {error}
+          </Text>
+        </S.ViewError>
+      )}
       <S.List
         ListFooterComponent={() => <S.Spacing />}
         keyExtractor={(item: Company) => item.id}
