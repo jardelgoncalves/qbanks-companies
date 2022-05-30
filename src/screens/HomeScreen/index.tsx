@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
 
-import {AddressType} from '@/interfaces/address';
 import {Input} from '@/components/ui/Input';
 import {Text} from '@/components/ui/Text';
 import {CardCompany} from '@/components/ui/CardCompany';
@@ -8,17 +8,13 @@ import {Loader} from '@/components/ui/Loader';
 import {searchCompanyByTextDebounced} from '@/services/search-service';
 import {useListCompanies} from '@/hooks/use-list-companies';
 
+import type {Company} from '@/interfaces/company';
+
 import * as S from './Home.styled';
 
-type Company = {
-  id: string;
-  name: string;
-  cnpj: string;
-  logo: string;
-  address: AddressType;
-};
-
 export const HomeScreen = () => {
+  const [query, setQuery] = useState('');
+  const navigation = useNavigation();
   const {
     companies,
     loading,
@@ -28,7 +24,6 @@ export const HomeScreen = () => {
     allComapnies,
     updateCompaniesInList,
   } = useListCompanies();
-  const [query, setQuery] = useState('');
 
   const onInputText = (value: string) => {
     setQuery(value);
@@ -45,6 +40,12 @@ export const HomeScreen = () => {
     };
   }, [query, allComapnies, updateCompaniesInList]);
 
+  const goToCompany = (id: string) => {
+    navigation.navigate('Company', {
+      companyId: id,
+    });
+  };
+
   const renderCompanies = ({item}: {item: Company}) => (
     <CardCompany
       key={item.id}
@@ -52,6 +53,7 @@ export const HomeScreen = () => {
       cnpj={item.cnpj}
       logo={item.logo}
       address={item.address}
+      onPress={() => goToCompany(item.id)}
     />
   );
 
