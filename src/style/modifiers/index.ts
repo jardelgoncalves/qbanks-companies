@@ -7,7 +7,7 @@ import {fontFamilyModifier} from './font-family';
 
 export const modifiers = {
   apply: (theme: DefaultTheme, modifier: ModifiersType) => css`
-    ${(modifier?.background || modifier?.bg) &&
+    ${(modifier?.background || modifier?.bg || modifier.backgroundColor) &&
     `background-color: ${colorModifier(
       theme,
       modifier?.bg || modifier?.background || modifier?.backgroundColor,
@@ -22,6 +22,12 @@ export const modifiers = {
     `font-family: ${fontFamilyModifier(
       theme,
       modifier.ff || modifier.fontFamily,
+    )}`};
+
+    ${(modifier?.borderColor || modifier.bc) &&
+    `border-color: ${colorModifier(
+      theme,
+      modifier.borderColor || modifier.bc,
     )}`};
   `,
   colorModifier,
