@@ -7,8 +7,16 @@ import {SplashScreen} from '@/screens/SplashScreen';
 import {HomeScreen} from '@/screens/HomeScreen';
 import {TabBar} from '@/components/ui/TabBar';
 import {AddEditCompanyScreen} from '@/screens/AddEditCompany';
+import {CompanyScreen} from '@/screens/Company';
 
-const Stack = createBottomTabNavigator();
+export type RootStackParamList = {
+  Splash: undefined;
+  Home: undefined;
+  Company: {companyId: string};
+  AddOrEditCompany: undefined;
+};
+
+const Stack = createBottomTabNavigator<RootStackParamList>();
 export const Routes = () => {
   const [showSplash, setShowSplash] = useState(true);
 
@@ -31,6 +39,7 @@ export const Routes = () => {
           component={HomeScreen}
           options={{header: () => null}}
         />
+        <Stack.Screen name="Company" component={CompanyScreen} />
         <Stack.Screen
           name="AddOrEditCompany"
           component={AddEditCompanyScreen}
