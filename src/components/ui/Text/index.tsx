@@ -7,6 +7,7 @@ type TextProps = ModifiersType & {
   children: React.ReactNode;
   style?: StyleProp<TextStyle>;
   numberOfLines?: number;
+  uppercase?: boolean;
 };
 export const Text = ({children, style, ...rest}: TextProps) => {
   return (
