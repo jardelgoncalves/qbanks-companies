@@ -50,7 +50,15 @@ export const CompanyScreen = () => {
       ) : (
         <ScrollView>
           <S.CompanyHeader>
-            <S.LogoBrand source={logo} onError={() => setLogo(LogoImg)} />
+            {!loading && (
+              <>
+                {logo.uri ? (
+                  <S.LogoBrand source={logo} onError={() => setLogo(LogoImg)} />
+                ) : (
+                  <S.LogoBrand source={LogoImg} />
+                )}
+              </>
+            )}
             <Text
               color="grayscale.100"
               fs="xl"
