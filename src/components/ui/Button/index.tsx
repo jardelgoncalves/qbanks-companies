@@ -9,6 +9,7 @@ type ButtonProps = ModifiersType &
     children: React.ReactNode;
     variant?: 'raised' | 'ghost' | 'outline';
     block?: boolean;
+    width?: string;
   };
 
 export const Button = ({children, ...rest}: ButtonProps) => {
