@@ -10,11 +10,14 @@ import {theme} from '@/style/theme';
 
 const showTabRoutes = ['Home'];
 
-export const TabBar = ({state}: BottomTabBarProps) => {
-  const showTab =
-    state.routeNames && showTabRoutes.includes(state.routeNames[0]);
+export const TabBar = ({state, navigation}: BottomTabBarProps) => {
+  const routeNames = state?.routeNames[state.index];
 
-  return showTab ? (
+  const onPress = () => {
+    navigation.navigate('AddOrEditCompany');
+  };
+
+  return showTabRoutes.includes(routeNames) ? (
     <S.Bar>
       <S.PositionElement>
         <Svg width={30} height={33} viewBox="0 0 30 33" fill="none">
@@ -35,7 +38,7 @@ export const TabBar = ({state}: BottomTabBarProps) => {
       </S.PositionElement>
 
       <S.Logo source={LogoImage} />
-      <Button variant="ghost" backgroundColor="grayscale.100">
+      <Button variant="ghost" backgroundColor="grayscale.100" onPress={onPress}>
         <Text color="grayscale.100" ff="primary.medium">
           Add Company
         </Text>
