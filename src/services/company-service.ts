@@ -7,3 +7,10 @@ export const getListCompanies = async () => {
 
   return data;
 };
+
+export const getById = async (id: string) => {
+  const URL = `${BASE_URL_API}/companies/${id}/?format=json`;
+  const data = await FetchService.call(URL);
+
+  return data;
+};
