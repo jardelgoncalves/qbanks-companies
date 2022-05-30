@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from 'react';
 
-import {CardCompany} from '@/components/ui/CardCompany';
 import {AddressType} from '@/interfaces/address';
 import {Input} from '@/components/ui/Input';
 import {Text} from '@/components/ui/Text';
+import {CardCompany} from '@/components/ui/CardCompany';
+import {Loader} from '@/components/ui/Loader';
 import {searchCompanyByTextDebounced} from '@/services/search-service';
 import {useListCompanies} from '@/hooks/use-list-companies';
 
 import * as S from './Home.styled';
-import {Loader} from '@/components/ui/Loader';
 
 type Company = {
   id: string;
@@ -69,11 +69,11 @@ export const HomeScreen = () => {
       </S.HeaderContainer>
       {loading && !refreshing && <Loader />}
       {!!error && (
-        <S.ViewError>
+        <S.ViewCenter>
           <Text color="error.700" fs="lg">
             {error}
           </Text>
-        </S.ViewError>
+        </S.ViewCenter>
       )}
       <S.List
         ListFooterComponent={() => <S.Spacing />}

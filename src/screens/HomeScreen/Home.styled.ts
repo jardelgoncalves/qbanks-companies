@@ -21,7 +21,7 @@ export const HeaderContainer = styled.View`
   padding: 32px 35px 16px;
 `;
 
-export const ViewError = styled.View`
+export const ViewCenter = styled.View`
   height: 20%;
   display: flex;
   align-items: center;
