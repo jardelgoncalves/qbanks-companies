@@ -29,7 +29,7 @@ const searchBySimilarity = (query: string, companies: Company[]) => {
       query,
       company.cnpj,
     );
-    return nameSimilarity > 0.4 || cnpjSimilarity > 0.4;
+    return nameSimilarity > 0.25 || cnpjSimilarity > 0.25;
   });
 };
 
