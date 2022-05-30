@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {wait} from '@/utils/wait';
 import {SplashScreen} from '@/screens/SplashScreen';
 import {HomeScreen} from '@/screens/HomeScreen';
+import {TabBar} from '@/components/ui/TabBar';
+import {AddEditCompanyScreen} from '@/screens/AddEditCompany';
 
-const Stack = createNativeStackNavigator();
+const Stack = createBottomTabNavigator();
 export const Routes = () => {
   const [showSplash, setShowSplash] = useState(true);
 
@@ -16,7 +18,7 @@ export const Routes = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator tabBar={TabBar}>
         {showSplash && (
           <Stack.Screen
             name="Splash"
@@ -28,6 +30,10 @@ export const Routes = () => {
           name="Home"
           component={HomeScreen}
           options={{header: () => null}}
+        />
+        <Stack.Screen
+          name="AddOrEditCompany"
+          component={AddEditCompanyScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

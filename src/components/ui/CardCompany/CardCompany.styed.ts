@@ -7,7 +7,7 @@ export const Card = styled.TouchableOpacity`
     background-color: ${theme.colors.grayscale[200]};
     padding: 16px 20px;
     border-radius: 8px;
-    margin-top: 20px;
+    margin-top: 16px;
   `};
 `;
 
