@@ -1,6 +1,6 @@
 export type AddressType = {
   street: string;
-  number?: string;
+  number: string;
   complement?: string;
   neighborhood: string;
   city: string;
