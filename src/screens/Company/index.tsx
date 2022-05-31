@@ -1,15 +1,18 @@
-import {Button} from '@/components/ui/Button';
-import {Text} from '@/components/ui/Text';
-import {useFindCompany} from '@/hooks/use-find-company';
-import {useNavigation, useRoute} from '@react-navigation/native';
 import React, {useEffect, useLayoutEffect, useState} from 'react';
-import {ScrollView} from 'react-native';
+import {useIsFocused, useNavigation, useRoute} from '@react-navigation/native';
+import {ScrollView, StatusBar} from 'react-native';
+import Icon from 'react-native-remix-icon';
+import {Text} from '@/components/ui/Text';
 
+import {AddressItem} from './AddressItem';
+import {Loader} from '@/components/ui/Loader';
+import {Button} from '@/components/ui/Button';
+
+import {useFindCompany} from '@/hooks/use-find-company';
 import LogoImg from '@/assets/images/placeholder.png';
 
 import * as S from './Company.styled';
-import {AddressItem} from './AddressItem';
-import {Loader} from '@/components/ui/Loader';
+import {theme} from '@/style/theme';
 
 type ParamsRoute = {
   companyId: string;
@@ -19,9 +22,17 @@ export const CompanyScreen = () => {
   const [logo, setLogo] = useState({uri: ''});
   const route = useRoute();
   const navigation = useNavigation();
-  const {company, loading} = useFindCompany(
+  const isFocused = useIsFocused();
+  const {company, loading, findById} = useFindCompany(
     (route.params as ParamsRoute)?.companyId,
   );
+
+  useEffect(() => {
+    if (isFocused) {
+      findById((route.params as ParamsRoute)?.companyId);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isFocused]);
 
   useEffect(() => {
     if (company?.logo) {
@@ -31,20 +42,29 @@ export const CompanyScreen = () => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerLeft: () => (
+      headerRight: () => (
         <Button
           width="48px"
-          variant="ghost"
-          bg="primary.700"
-          onPress={() => navigation.goBack()}>
-          <Text>b</Text>
+          variant="outline"
+          bc="grayscale.100"
+          onPress={() =>
+            navigation.navigate('AddOrEditCompany', {
+              companyId: (route.params as ParamsRoute)?.companyId,
+            })
+          }>
+          <Icon
+            name="edit-line"
+            size="28"
+            color={theme.colors.grayscale[100]}
+          />
         </Button>
       ),
     });
-  }, [navigation]);
+  }, [navigation, route.params]);
 
   return (
     <S.Container>
+      <StatusBar backgroundColor={theme.colors.primary[700]} />
       {loading ? (
         <Loader />
       ) : (

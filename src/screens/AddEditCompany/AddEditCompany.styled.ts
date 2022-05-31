@@ -12,7 +12,7 @@ export const Container = styled.SafeAreaView`
 export const Form = styled.View`
   ${({theme}) => css`
     margin-top: 16px;
-    padding: 32px 35px 60px;
+    padding: 32px 35px 140px;
     background-color: ${theme.colors.grayscale[100]};
     border-top-left-radius: 32px;
     border-top-right-radius: 32px;

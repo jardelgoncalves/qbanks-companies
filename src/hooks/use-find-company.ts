@@ -34,5 +34,6 @@ export const useFindCompany = (id?: string) => {
     company,
     loading,
     error,
+    findById,
   };
 };

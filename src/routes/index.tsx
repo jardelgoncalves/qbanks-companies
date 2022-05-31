@@ -8,6 +8,7 @@ import {HomeScreen} from '@/screens/HomeScreen';
 import {TabBar} from '@/components/ui/TabBar';
 import {AddEditCompanyScreen} from '@/screens/AddEditCompany';
 import {CompanyScreen} from '@/screens/Company';
+import {Header} from '@/components/ui/Header';
 
 export type RootStackParamList = {
   Splash: undefined;
@@ -39,10 +40,17 @@ export const Routes = () => {
           component={HomeScreen}
           options={{header: () => null}}
         />
-        <Stack.Screen name="Company" component={CompanyScreen} />
+        <Stack.Screen
+          name="Company"
+          component={CompanyScreen}
+          options={{header: Header}}
+        />
         <Stack.Screen
           name="AddOrEditCompany"
           component={AddEditCompanyScreen}
+          options={{
+            header: props => <Header {...props} title="Form company" />,
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

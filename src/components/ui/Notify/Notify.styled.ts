@@ -5,8 +5,8 @@ import styled, {css} from 'styled-components/native';
 const {height, width} = Dimensions.get('window');
 export const Overlay = styled.View`
   ${({theme}) => css`
-    height: ${Math.round(height)};
-    width: ${Math.round(width)};
+    height: ${Math.round(height)}px;
+    width: ${Math.round(width)}px;
     position: absolute;
     top: 0;
     bottom: 0;
