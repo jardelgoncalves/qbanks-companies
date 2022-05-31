@@ -5,6 +5,10 @@ type Wrap = {
   hasError?: boolean;
 };
 
+export const Container = styled.View`
+  margin-bottom: 16px;
+`;
+
 export const Wrap = styled.TextInput<Wrap>`
   ${({theme, hasError, focused}) => css`
     height: 56px;

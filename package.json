@@ -11,13 +11,16 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.8.10",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/bottom-tabs": "^6.3.1",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.6.2",
+    "axios": "^0.27.2",
     "lodash.debounce": "^4.0.8",
     "lodash.get": "^4.4.2",
     "react": "17.0.2",
+    "react-hook-form": "^7.31.3",
     "react-native": "0.68.2",
     "react-native-gesture-handler": "^2.4.2",
     "react-native-remix-icon": "^0.3.0",
@@ -25,7 +28,8 @@
     "react-native-screens": "^3.13.1",
     "react-native-svg": "^12.3.0",
     "string-similarity": "^4.0.4",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -33,6 +37,7 @@
     "@commitlint/cli": "^17.0.1",
     "@commitlint/config-conventional": "^17.0.0",
     "@react-native-community/eslint-config": "^2.0.0",
+    "@types/axios": "^0.14.0",
     "@types/jest": "^26.0.23",
     "@types/lodash.debounce": "^4.0.7",
     "@types/lodash.get": "^4.4.7",
