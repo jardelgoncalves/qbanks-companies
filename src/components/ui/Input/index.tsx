@@ -1,6 +1,6 @@
 import {theme} from '@/style/theme';
 import React, {useState} from 'react';
-import {TextInputProps, View} from 'react-native';
+import {TextInputProps} from 'react-native';
 import {Text} from '../Text';
 
 import * as S from './Input.styled';
@@ -10,10 +10,16 @@ type InputProps = TextInputProps & {
   error?: string;
 };
 
-export const Input = ({label, error, ...props}: InputProps) => {
+export const Input = ({
+  label,
+  error,
+  onBlur,
+  onFocus,
+  ...props
+}: InputProps) => {
   const [focused, setFocused] = useState(false);
   return (
-    <View>
+    <S.Container>
       {label && (
         <Text uppercase color="grayscale.700" ff="primary.bold">
           {label}
@@ -24,8 +30,14 @@ export const Input = ({label, error, ...props}: InputProps) => {
         {...props}
         focused={focused}
         hasError={!!error}
-        onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
+        onFocus={e => {
+          setFocused(true);
+          onFocus?.(e);
+        }}
+        onBlur={e => {
+          setFocused(false);
+          onBlur?.(e);
+        }}
         placeholderTextColor={theme.colors.grayscale[500]}
       />
 
@@ -34,6 +46,6 @@ export const Input = ({label, error, ...props}: InputProps) => {
           {error}
         </Text>
       )}
-    </View>
+    </S.Container>
   );
 };
