@@ -10,7 +10,6 @@ export const useListCompanies = () => {
   const [loading, setLoading] = useState(false);
 
   const fetchingList = () => {
-    setLoading(true);
     getListCompanies()
       .then(data => {
         setCompanies(data);
@@ -25,6 +24,7 @@ export const useListCompanies = () => {
   };
 
   useEffect(() => {
+    setLoading(true);
     fetchingList();
   }, []);
 
