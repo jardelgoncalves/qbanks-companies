@@ -17,7 +17,7 @@ export const getById = async (id: string) => {
 
 export const saveOrUpdate = async (body: Omit<Company, 'id'>, id?: string) => {
   const URL = `/companies/${id ? `${id}/` : ''}?format=json`;
-  const data = await FetchService.createOrUpdate(URL, body);
+  const data = await FetchService.createOrUpdate(URL, body, !!id);
 
   return data;
 };
