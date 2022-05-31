@@ -13,7 +13,7 @@ export type RootStackParamList = {
   Splash: undefined;
   Home: undefined;
   Company: {companyId: string};
-  AddOrEditCompany: undefined;
+  AddOrEditCompany: {companyId?: string};
 };
 
 const Stack = createBottomTabNavigator<RootStackParamList>();
